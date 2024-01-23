@@ -1,5 +1,9 @@
-import MySQLdb
-import mysql.connector
+import sqlite3
+import sys
+import traceback
+
+# import MySQLdb
+# import mysql.connector
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem, QMessageBox
@@ -61,7 +65,7 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         row = 0
         self.pistonTable.setRowCount(len(result))
         for piston in result:
-            print(piston[1])
+            print(piston)
             self.pistonTable.setItem(row, 0, QTableWidgetItem(str(piston[0])))
             self.pistonTable.setItem(row, 1, QTableWidgetItem(str(piston[1])))
             self.pistonTable.setItem(row, 2, QTableWidgetItem(str(piston[2])))
@@ -99,33 +103,33 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         inputs.append(totalHeight)
         inputs.append(oversize)
         inputs.append(diameter)
-        empty_input = False
-        for input in inputs:
-            if input is None or input == '':
-                empty_input = True
-                print('Empty input')
+        # empty_input = False
+        # for input in inputs:
+        #     if input is None or input == '':
+        #         empty_input = True
+        #         print('Empty input')
 
-        if not empty_input:
-            validator = Input_Validator(piston)
-            is_valid = validator.result_only_numbers()
-            if is_valid:
-                try:
-                    query = ("insert into pistons(brand, model, tact, pistonCode, diameter, totalHeight, pinDiameter, "
-                             "compressionHeight, oversize) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
-                    conn = connection()
-                    conn.insert_query(query, piston_data)
-                    print('Entered successfully')
-                    self.show_success_alert()
-                except mysql.connector.IntegrityError as e:
-                    print(e)
-                    self.show_duplicate_entry_alert()
-                finally:
-                    print(piston)
-                    self.fillTable()
-            else:
-                self.show_not_numbers_alert()
+        # if not empty_input:
+        validator = Input_Validator(piston)
+        is_valid = validator.result_only_numbers()
+        if is_valid:
+            try:
+                query = ("insert into pistons(brand, model, tact, pistonCode, diameter, totalHeight, pinDiameter, "
+                         "compressionHeight, oversize) values (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                conn = connection()
+                conn.insert_query(query, piston_data)
+                print('Entered successfully')
+                self.show_success_alert()
+            except sqlite3.IntegrityError as e:
+                print(e)
+                self.show_duplicate_entry_alert()
+            finally:
+                print(piston)
+                self.fillTable()
         else:
-            self.show_empty_input_alert()
+            self.show_not_numbers_alert()
+        # else:
+        #     self.show_empty_input_alert()
 
     def show_duplicate_entry_alert(self):
         self.duplicate_pop_up = Alert_Window()
@@ -158,8 +162,8 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     def search(self):
         brand = self.search_window.brandLine.text().upper()
         model = self.search_window.modelLine.text().upper()
-        code = self.search_window.pistonCodeLine.text().upper()
         tact = self.search_window.tactLine.text().upper()
+        code = self.search_window.pistonCodeLine.text().upper()
         compression = self.search_window.compressionLine.text().upper()
         total_height = self.search_window.totalHeightLine.text().upper()
         pin_diameter = self.search_window.pinDiameterLine.text().upper()
@@ -189,14 +193,24 @@ class Main_Window(QMainWindow, Ui_MainWindow):
     def handle_delete(self):
         self.sure_alert.show()
 
-
     def delete_row(self):
         if self.pistonTable.rowCount() > 0:
+            brand = self.pistonTable.item(self.pistonTable.currentRow(), 0).text().upper()
+            model = self.pistonTable.item(self.pistonTable.currentRow(), 1).text().upper()
+            tact = self.pistonTable.item(self.pistonTable.currentRow(), 2).text().upper()
             code = self.pistonTable.item(self.pistonTable.currentRow(), 3).text().upper()
+            diameter = self.pistonTable.item(self.pistonTable.currentRow(), 4).text().upper()
+            total_height = self.pistonTable.item(self.pistonTable.currentRow(), 5).text().upper()
+            pin_diameter = self.pistonTable.item(self.pistonTable.currentRow(), 6).text().upper()
+            compression = self.pistonTable.item(self.pistonTable.currentRow(), 7).text().upper()
+            oversize = self.pistonTable.item(self.pistonTable.currentRow(), 8).text().upper()
+            query = ("DELETE FROM PISTONS WHERE brand=? and model=? and tact=? and pistonCode=? and diameter=? and "
+                     "totalHeight=? and pinDiameter=? and compressionHeight=? and oversize=?")
+            data = (brand, model, tact, code, diameter, total_height, pin_diameter, compression, oversize)
             conn = connection()
-            statement = 'DELETE FROM PISTONS WHERE pistonCode = ' + "'" + code + "'"
-            print(statement)
-            conn.delete_query(statement)
+            # statement = 'DELETE FROM PISTONS WHERE pistonCode = ' + "'" + code + "'"
+            # print(statement)
+            conn.delete_query(query, data)
             self.pistonTable.removeRow(self.pistonTable.rowCount() - 1)
             self.fillTable()
             self.sure_alert.close()
@@ -239,18 +253,39 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         pin_diameter = self.edit_window.pinDiameterLine.text().upper()
         compression = self.edit_window.compressionLine.text().upper()
         oversize = self.edit_window.oversizeLine.text().upper()
-        old_code = self.edit_window.codePrevValue.text().upper()
+        # old_code = self.edit_window.codePrevValue.text().upper()
         piston = Piston(brand, model, tact, code, diameter, total_height, pin_diameter, compression, oversize)
+        # if self.edit_window.brandPrevValue.text() == "":
+        #     prev_brand = 'IS NULL'
+        # else:
+        #     prev_brand = self.edit_window.brandPrevValue.text()
+        # if self.edit_window.modelPrevValue.text() == "":
+        #     prev_model = 'IS NULL'
+        # else:
+        #     prev_model = self.edit_window.modelPrevValue.text()
+        # if self.edit_window.tactPrevValue.text() == "":
+        #     prev_tact = 'IS NULL'
+        # else:
+        #     prev_tact = self.edit_window.tactPrevValue.text()
+
+        prev_brand = self.edit_window.brandPrevValue.text()
+        prev_model = self.edit_window.modelPrevValue.text()
+        prev_tact = self.edit_window.tactPrevValue.text()
 
         try:
             generator = Generator(piston)
-            update_statement = generator.update_query(old_code)
+            update_statement = generator.update_query(prev_brand, prev_model, prev_tact)
             conn = connection()
             conn.update_query(update_statement)
             print('Piston successfully edited.')
             self.edit_success_alert = Edit_Successfull_Alert()
             self.edit_success_alert.show()
-        except:
-            print('Egine malakia')
+        except sqlite3.Error as er:
+            print('SQLite error: %s' % (' '.join(er.args)))
+            print("Exception class is: ", er.__class__)
+            print('SQLite traceback: ')
+            exc_type, exc_value, exc_tb = sys.exc_info()
+            print(traceback.format_exception(exc_type, exc_value, exc_tb))
+        # con.close()
         finally:
             self.fillTable()

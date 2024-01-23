@@ -1,10 +1,12 @@
+import sqlite3
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
 from PyQt5 import QtWidgets, QtCore
 from PyQt5 import QtCore
 from editInterface import Ui_MainWindow
 from db_procedures import connection
-import mysql.connector
+# import mysql.connector
 from duplicateEntryAlert_Window import Alert_Window
 
 
@@ -49,7 +51,7 @@ class Edit_Panel(QMainWindow, Ui_MainWindow):
                      "pinDiameter, compressionHeight, oversize) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
             conn.insert_query(query, piston)
             print('Entered successfully')
-        except mysql.connector.IntegrityError as e:
+        except sqlite3.connector.IntegrityError as e:
             print(e)
             self.show_pop_up()
         finally:

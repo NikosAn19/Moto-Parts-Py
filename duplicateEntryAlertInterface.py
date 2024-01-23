@@ -130,6 +130,6 @@ class Ui_alertWindow(object):
     def retranslateUi(self, alertWindow):
         _translate = QtCore.QCoreApplication.translate
         alertWindow.setWindowTitle(_translate("alertWindow", "MainWindow"))
-        self.label.setText(_translate("alertWindow", "The piston with this code already exists."))
+        self.label.setText(_translate("alertWindow", "This piston already exists."))
         self.okBtn.setText(_translate("alertWindow", "Ok"))
 

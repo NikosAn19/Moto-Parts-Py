@@ -1,5 +1,6 @@
 from data import Piston
 
+
 class Input_Validator:
     def __init__(self, piston):
         self.brand = piston.brand
@@ -13,7 +14,10 @@ class Input_Validator:
         self.oversize = piston.oversize
 
     def validate_numerics(self):
-        if self.total_height.replace('.', '', 1).isdigit() and self.compression.replace('.', '', 1).isdigit() and self.diameter.replace('.', '', 1).isdigit() and self.pin_diameter.replace('.', '', 1).isdigit():
+        if ((self.total_height.replace('.', '', 1).isdigit() or self.total_height == "") and
+                (self.compression.replace('.', '', 1).isdigit() or self.compression == "") and
+                (self.diameter.replace('.', '', 1).isdigit() or self.diameter == "") and
+                (self.pin_diameter.replace('.', '', 1).isdigit() or self.pin_diameter == "")):
             return 1
 
     def result_only_numbers(self):
@@ -24,7 +28,6 @@ class Input_Validator:
         else:
             print('Validation success')
             return True
-
 
 # piston1 = Piston('honda', 'crf', '4T', '', '21.5', '12.5',
 #                  '12.5', '12.5', '12')

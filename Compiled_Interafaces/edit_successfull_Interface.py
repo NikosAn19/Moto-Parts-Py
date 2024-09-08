@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'not_numbers_alert.ui'
+# Form implementation generated from reading ui file 'edit_successfull.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -55,7 +55,7 @@ class Ui_alertWindow(object):
 "}")
         self.closeBtn.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.closeBtn.setIcon(icon)
         self.closeBtn.setIconSize(QtCore.QSize(20, 20))
         self.closeBtn.setObjectName("closeBtn")
@@ -72,7 +72,7 @@ class Ui_alertWindow(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.label = QtWidgets.QLabel(self.labelContainer)
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
@@ -130,6 +130,6 @@ class Ui_alertWindow(object):
     def retranslateUi(self, alertWindow):
         _translate = QtCore.QCoreApplication.translate
         alertWindow.setWindowTitle(_translate("alertWindow", "MainWindow"))
-        self.label.setText(_translate("alertWindow", "Some fields should contain only numbers."))
+        self.label.setText(_translate("alertWindow", "Piston edited successfully"))
         self.okBtn.setText(_translate("alertWindow", "Ok"))
 

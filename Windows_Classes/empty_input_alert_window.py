@@ -1,9 +1,10 @@
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
-from PyQt5 import QtWidgets, QtCore
-from entrySuccessInterface import Ui_alertWindow
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtCore
+from Compiled_Interafaces.empty_input_Interface import Ui_alertWindow
+# from empty_input_Interface import Ui_alertWindow
 
 
-class Success_Alert_Window(QMainWindow, Ui_alertWindow):
+class Empty_Input_Alert_Window(QMainWindow, Ui_alertWindow):
     clickPos = None
 
     def __init__(self, parent=None):

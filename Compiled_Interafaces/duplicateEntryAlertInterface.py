@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'empty_input.ui'
+# Form implementation generated from reading ui file 'duplicateEntryAlert.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -55,7 +55,7 @@ class Ui_alertWindow(object):
 "}")
         self.closeBtn.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.closeBtn.setIcon(icon)
         self.closeBtn.setIconSize(QtCore.QSize(20, 20))
         self.closeBtn.setObjectName("closeBtn")
@@ -130,6 +130,6 @@ class Ui_alertWindow(object):
     def retranslateUi(self, alertWindow):
         _translate = QtCore.QCoreApplication.translate
         alertWindow.setWindowTitle(_translate("alertWindow", "MainWindow"))
-        self.label.setText(_translate("alertWindow", "Please fill all the fields"))
+        self.label.setText(_translate("alertWindow", "This piston already exists."))
         self.okBtn.setText(_translate("alertWindow", "Ok"))
 

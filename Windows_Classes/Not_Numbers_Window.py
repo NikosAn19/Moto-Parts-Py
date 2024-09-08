@@ -1,10 +1,10 @@
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtCore
+from Compiled_Interafaces.not_numbers_alert_Interface import Ui_alertWindow
+# from not_numbers_alert_Interface import Ui_alertWindow
 
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
-from PyQt5 import QtWidgets, QtCore
-from duplicateEntryAlertInterface import Ui_alertWindow
 
-
-class Alert_Window(QMainWindow, Ui_alertWindow):
+class Not_Numbers_Alert(QMainWindow, Ui_alertWindow):
     clickPos = None
 
     def __init__(self, parent=None):

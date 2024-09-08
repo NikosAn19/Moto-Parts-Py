@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'edit_successfull.ui'
+# Form implementation generated from reading ui file 'select_to_edit.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,10 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os
 
 class Ui_alertWindow(object):
     def setupUi(self, alertWindow):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        icon_path_exit = os.path.join(script_dir, "..", "icons", "x.svg")
+        icon_path_maximize = os.path.join(script_dir, "..", "icons", "square.svg")
+        icon_path_minimize = os.path.join(script_dir, "..", "icons", "minus.svg")
         alertWindow.setObjectName("alertWindow")
         alertWindow.resize(400, 200)
         alertWindow.setMinimumSize(QtCore.QSize(400, 200))
@@ -55,7 +59,7 @@ class Ui_alertWindow(object):
 "}")
         self.closeBtn.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(icon_path_exit), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.closeBtn.setIcon(icon)
         self.closeBtn.setIconSize(QtCore.QSize(20, 20))
         self.closeBtn.setObjectName("closeBtn")
@@ -130,6 +134,6 @@ class Ui_alertWindow(object):
     def retranslateUi(self, alertWindow):
         _translate = QtCore.QCoreApplication.translate
         alertWindow.setWindowTitle(_translate("alertWindow", "MainWindow"))
-        self.label.setText(_translate("alertWindow", "Piston edited successfully"))
+        self.label.setText(_translate("alertWindow", "Select a piston to edit"))
         self.okBtn.setText(_translate("alertWindow", "Ok"))
 

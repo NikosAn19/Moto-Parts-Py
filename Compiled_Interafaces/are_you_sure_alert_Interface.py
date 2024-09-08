@@ -55,7 +55,7 @@ class Ui_alertWindow(object):
 "}")
         self.closeBtn.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../icons/x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.closeBtn.setIcon(icon)
         self.closeBtn.setIconSize(QtCore.QSize(20, 20))
         self.closeBtn.setObjectName("closeBtn")

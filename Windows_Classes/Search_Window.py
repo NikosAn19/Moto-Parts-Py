@@ -1,11 +1,10 @@
-from db_procedures import connection
-from searchInterface import Ui_MainWindow
+from Compiled_Interafaces.searchInterface import Ui_MainWindow
+# from searchInterface import Ui_MainWindow
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
-from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtCore
-from data import Piston
-from Query_Generator import Generator
+
+
 class Search_Panel(QMainWindow, Ui_MainWindow):
     clickPos = None
 

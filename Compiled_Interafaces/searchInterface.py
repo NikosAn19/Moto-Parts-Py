@@ -9,10 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        icon_path_exit = os.path.join(script_dir, "..", "icons", "x.svg")
+        icon_path_maximize = os.path.join(script_dir, "..", "icons", "square.svg")
+        icon_path_minimize = os.path.join(script_dir, "..", "icons", "minus.svg")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(398, 924)
         MainWindow.setMinimumSize(QtCore.QSize(300, 300))
@@ -105,7 +109,7 @@ class Ui_MainWindow(object):
 "}")
         self.minimizeBtn.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:\\Users\\nikas\\PycharmProjects\\MotoParts\\icons\\minus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(icon_path_minimize), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.minimizeBtn.setIcon(icon)
         self.minimizeBtn.setObjectName("minimizeBtn")
         self.horizontalLayout_2.addWidget(self.minimizeBtn)
@@ -115,7 +119,7 @@ class Ui_MainWindow(object):
 "}")
         self.restoreBtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\nikas\\PycharmProjects\\MotoParts\\icons\\square.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(icon_path_maximize), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.restoreBtn.setIcon(icon1)
         self.restoreBtn.setObjectName("restoreBtn")
         self.horizontalLayout_2.addWidget(self.restoreBtn)
@@ -125,7 +129,7 @@ class Ui_MainWindow(object):
 "}")
         self.closeBtn.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("C:\\Users\\nikas\\PycharmProjects\\MotoParts\\icons\\x.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(icon_path_exit), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.closeBtn.setIcon(icon2)
         self.closeBtn.setObjectName("closeBtn")
         self.horizontalLayout_2.addWidget(self.closeBtn)

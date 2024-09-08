@@ -1,11 +1,10 @@
-from PyQt5 import QtWidgets, uic, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication
 import sys
-from Main_Window import Main_Window
-from duplicateEntryAlert_Window import Alert_Window
-from Search_Window import Search_Panel
-from Not_Numbers_Window import Not_Numbers_Alert
+from Windows_Classes.Main_Window import Main_Window
+import os
 
+print(os.path.exists("/icons/search.svg"))
+print(os.getcwd())
 app = QApplication(sys.argv)
 window = Main_Window()
 window.show()

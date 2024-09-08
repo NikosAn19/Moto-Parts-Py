@@ -2,27 +2,35 @@ import sqlite3
 import sys
 import traceback
 
-# import MySQLdb
-# import mysql.connector
-from PyQt5 import QtCore
+
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem, QMessageBox
-from PyQt5.uic.properties import QtGui
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 from PyQt5 import QtWidgets
-from interface_2_Interface import Ui_MainWindow
-from Query_Generator import Generator
+from Compiled_Interafaces.interface_2_Interface import Ui_MainWindow
+# from interface_2_Interface import Ui_MainWindow
+from Database.Query_Generator import Generator
 from data import Piston
-from db_procedures import connection
-from duplicateEntryAlert_Window import Alert_Window
-from Edit_Window import Edit_Panel
-from Search_Window import Search_Panel
-from entrySuccesfulAlert import Success_Alert_Window
-from empty_input_alert_window import Empty_Input_Alert_Window
-from Edit_SuccessFull_Window import Edit_Successfull_Alert
+from Database.db_procedures import connection
+from Windows_Classes.duplicateEntryAlert_Window import Alert_Window
+# from duplicateEntryAlert_Window import Alert_Window
+from Windows_Classes.Edit_Window import Edit_Panel
+# from Edit_Window import Edit_Panel
+from Windows_Classes.Search_Window import Search_Panel
+# from Search_Window import Search_Panel
+from Windows_Classes.entrySuccesfulAlert import Success_Alert_Window
+# from entrySuccesfulAlert import Success_Alert_Window
+from Windows_Classes.empty_input_alert_window import Empty_Input_Alert_Window
+# from empty_input_alert_window import Empty_Input_Alert_Window
+from Windows_Classes.Edit_SuccessFull_Window import Edit_Successfull_Alert
+# from Edit_SuccessFull_Window import Edit_Successfull_Alert
 from Validator import Input_Validator
-from Not_Numbers_Window import Not_Numbers_Alert
-from Sure_Window import Sure_Alert
-from Select_To_Edit import Select_To_Edit_Alert
+from Windows_Classes.Not_Numbers_Window import Not_Numbers_Alert
+# from Not_Numbers_Window import Not_Numbers_Alert
+from Windows_Classes.Sure_Window import Sure_Alert
+# from Sure_Window import Sure_Alert
+from Windows_Classes.Select_To_Edit import Select_To_Edit_Alert
+# from Select_To_Edit import Select_To_Edit_Alert
+# from Compiled_Interafaces.Main_Interface import Ui_MainWindow
 
 
 class Main_Window(QMainWindow, Ui_MainWindow):
@@ -255,18 +263,6 @@ class Main_Window(QMainWindow, Ui_MainWindow):
         oversize = self.edit_window.oversizeLine.text().upper()
         # old_code = self.edit_window.codePrevValue.text().upper()
         piston = Piston(brand, model, tact, code, diameter, total_height, pin_diameter, compression, oversize)
-        # if self.edit_window.brandPrevValue.text() == "":
-        #     prev_brand = 'IS NULL'
-        # else:
-        #     prev_brand = self.edit_window.brandPrevValue.text()
-        # if self.edit_window.modelPrevValue.text() == "":
-        #     prev_model = 'IS NULL'
-        # else:
-        #     prev_model = self.edit_window.modelPrevValue.text()
-        # if self.edit_window.tactPrevValue.text() == "":
-        #     prev_tact = 'IS NULL'
-        # else:
-        #     prev_tact = self.edit_window.tactPrevValue.text()
 
         prev_brand = self.edit_window.brandPrevValue.text()
         prev_model = self.edit_window.modelPrevValue.text()

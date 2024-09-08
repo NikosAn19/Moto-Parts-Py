@@ -7,11 +7,11 @@ from data import Piston
 
 def connect_to_sqlite(str_sql, data):
     try:
-        conn = sqlite3.connect('Moto_Parts/motoparts.db')
+        conn = sqlite3.connect('../Moto_Parts/motoparts.db')
     except sqlite3.OperationalError:
-        mkdir('Moto_Parts')
+        mkdir('../Moto_Parts')
     finally:
-        conn = sqlite3.connect('Moto_Parts/motoparts.db')
+        conn = sqlite3.connect('../Moto_Parts/motoparts.db')
     # conn = sqlite3.connect('/motoparts.db')
     cursor = conn.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS PISTONS(
@@ -44,11 +44,11 @@ def connect_to_sqlite(str_sql, data):
 class connection:
     def __init__(self):
         try:
-            self.db = sqlite3.connect('Moto_Parts/motoparts.db')
+            self.db = sqlite3.connect('../Moto_Parts/motoparts.db')
         except sqlite3.OperationalError:
-            mkdir('Moto_Parts')
+            mkdir('../Moto_Parts')
         finally:
-            self.db = sqlite3.connect('Moto_Parts/motoparts.db')
+            self.db = sqlite3.connect('../Moto_Parts/motoparts.db')
         # self.db = sqlite3.connect('motoparts.db')
         cursor = self.db.cursor()
         cursor.execute("""CREATE TABLE IF NOT EXISTS PISTONS(

@@ -1,13 +1,14 @@
 import sqlite3
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
-from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtCore
-from editInterface import Ui_MainWindow
-from db_procedures import connection
+from Compiled_Interafaces.editInterface import Ui_MainWindow
+# from editInterface import Ui_MainWindow
+from Database.db_procedures import connection
 # import mysql.connector
-from duplicateEntryAlert_Window import Alert_Window
+from Windows_Classes.duplicateEntryAlert_Window import Alert_Window
+# from duplicateEntryAlert_Window import Alert_Window
 
 
 class Edit_Panel(QMainWindow, Ui_MainWindow):

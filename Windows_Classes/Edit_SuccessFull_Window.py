@@ -1,6 +1,7 @@
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
-from PyQt5 import QtWidgets, QtCore
-from edit_successfull_Interface import Ui_alertWindow
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtCore
+from Compiled_Interafaces.edit_successfull_Interface import Ui_alertWindow
+# from edit_successfull_Interface import Ui_alertWindow
 
 
 class Edit_Successfull_Alert(QMainWindow, Ui_alertWindow):

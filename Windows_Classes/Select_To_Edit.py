@@ -1,9 +1,11 @@
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QTableWidgetItem
-from PyQt5 import QtWidgets, QtCore
-from not_numbers_alert_Interface import Ui_alertWindow
+from Compiled_Interafaces.select_to_edit__alert_Interface import Ui_alertWindow
+# from select_to_edit__alert_Interface import Ui_alertWindow
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5 import QtCore
 
 
-class Not_Numbers_Alert(QMainWindow, Ui_alertWindow):
+
+class Select_To_Edit_Alert(QMainWindow, Ui_alertWindow):
     clickPos = None
 
     def __init__(self, parent=None):
